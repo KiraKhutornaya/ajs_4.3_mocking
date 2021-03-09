@@ -8,7 +8,6 @@ workflows:
 
 jobs:
   test:
-    <<: *defaults
     steps:
       - checkout
 
