@@ -11,7 +11,7 @@ jobs:
       - checkout
       - node/install-npm
       - node/install-packages:
-          app-dir: ~/backend_api
+          app-dir: ~/ajs_4.3_mocking
           cache-path: node_modules
           override-ci-command: npm i
       - persist_to_workspace:
