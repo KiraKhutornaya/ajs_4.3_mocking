@@ -20,5 +20,3 @@ test('should return correctly value with response.status === \'ok\'', () => {
   expect(getLevel(1)).toEqual(`Ваш текущий уровень: ${response.data.level}`);
   expect(fetchData).toBeCalledWith('https://server/user/1');
 });
-
-
