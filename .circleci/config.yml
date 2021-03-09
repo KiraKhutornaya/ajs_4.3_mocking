@@ -26,18 +26,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Test
-          command: npm test
-
-  lint:
-    docker:
-      - image: cimg/node:current
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
           name: Lint
           command: npm run lint
+      - run:
+          name: Test
+          command: npm test
 
 workflows:
   version: 2
