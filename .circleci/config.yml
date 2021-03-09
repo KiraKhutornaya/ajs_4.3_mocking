@@ -1,20 +1,49 @@
----
+version: 2.1
+
+orbs:
+  node: circleci/node@3.0.1
+
 jobs:
-  test:
-    docker:
-      - image: circleci/node:8.6.0
-      - image: cassandra:3.11
-    resource_class: large
+  build:
+    working_directory: ~/ajs_4.3_mocking
+    executor: node/default
     steps:
       - checkout
+      - node/install-npm
+      - node/install-packages:
+          app-dir: ~/ajs_4.3_mocking
+          cache-path: node_modules
+          override-ci-command: npm i
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  test:
+    docker:
+      - image: cimg/node:current
+    steps:
+      - attach_workspace:
+          at: .
       - run:
-          name: install dependencies
-          command: npm install
-      - run: npm run lint
-      - run: npm test
-      - store_artifacts:
-          path: .coverage
+          name: Test
+          command: npm test
+
+  lint:
+    docker:
+      - image: cimg/node:current
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint
+          command: npm run lint
+
+workflows:
   version: 2
-  test_and_build:
+  build_and_test:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
