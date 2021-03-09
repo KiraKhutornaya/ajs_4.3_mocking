@@ -23,7 +23,7 @@ test('should return correctly value with response.status === \'ok\'', () => {
 
 test('should return correctly value', () => {
   const response = {
-    status: 'internal server error',
+    status: 'not found',
   };
   fetchData.mockReturnValue(response);
 
