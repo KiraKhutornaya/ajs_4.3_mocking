@@ -10,18 +10,19 @@ orbs:
         - node/with-cache:
             steps:
               - run: npm install
-              - run: npm run init
+              - run: npm test
               - run: npm run lint
               - run: npm run build
+
   workflows:
     build-test-deploy:
       jobs:
         - build-and-test
-        - deploy-functions:
-            requires:
-              - build-and-test
-            filters:
-              branches:
-                only:
-                  - master
+        #- deploy-functions:
+        #    requires:
+        #      - build-and-test
+        #    filters:
+        #      branches:
+        #        only:
+        #         - master
 
