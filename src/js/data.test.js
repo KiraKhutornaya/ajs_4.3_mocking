@@ -21,12 +21,4 @@ test('should return correctly value with response.status === \'ok\'', () => {
   expect(fetchData).toBeCalledWith('https://server/user/1');
 });
 
-test('should return correctly value', () => {
-  const response = {
-    status: 'not found',
-  };
-  fetchData.mockReturnValue(response);
 
-  expect(getLevel(5)).toEqual('Информация об уровне временно недоступна');
-  expect(fetchData).toBeCalledWith('https://server/user/5');
-});
