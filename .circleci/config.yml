@@ -14,15 +14,4 @@ orbs:
               - run: npm run lint
               - run: npm run build
 
-  workflows:
-    build-test-deploy:
-      jobs:
-        - build-and-test
-        #- deploy-functions:
-        #    requires:
-        #      - build-and-test
-        #    filters:
-        #      branches:
-        #        only:
-        #         - master
 
